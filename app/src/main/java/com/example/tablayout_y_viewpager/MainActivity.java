@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPager2 viewPager = findViewById(R.id.pager);
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(sectionsPagerAdapter);
+        viewPager.setPageTransformer(new AccordionTransformer());
 
         Toolbar toolbar1 = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar1);
