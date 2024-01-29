@@ -22,16 +22,29 @@ import android.view.View;
 
 import androidx.viewpager2.widget.ViewPager2;
 
+/**
+ * Clase abstracta que define una animacion de transicion entre paginas para un ViewPager2
+ * @author Cesar Alvaro
+ * @version 1.0
+ * @see ViewPager2
+ * @see ViewPager2.PageTransformer
+ * @see AccordionTransformer
+ */
+
 public abstract class BaseTransformer implements ViewPager2.PageTransformer {
 
     /**
-     * Called each {@link #transformPage(android.view.View, float)}.
-     *
-     * @param view
-     * @param position
+     * Metodo que define la animacion de transicion entre paginas
+     * @param view Vista a la que se aplica la transformacion
+     * @param position Posicion de la pagina en el ViewPager2
      */
     protected abstract void onTransform(View view, float position);
 
+    /**
+     * Metodo que aplica la transformacion a una pagina
+     * @param view Aplica la transformacion a esta vista
+     * @param position Posicion de la página en el ViewPager2
+     */
     @Override
     public void transformPage(View view, float position) {
         onPreTransform(view, position);
@@ -40,29 +53,26 @@ public abstract class BaseTransformer implements ViewPager2.PageTransformer {
     }
 
     /**
-     * If the position offset of a fragment is less than negative one or greater than one, returning true will set the
-     * visibility of the fragment to {@link android.view.View#GONE}. Returning false will force the fragment to {@link android.view.View#VISIBLE}.
-     *
-     * @return
+     * Metodo que se llama antes de {@link #transformPage(android.view.View, float)} para cada página y antes de que se aplique la transformación.
+     * Indica si las paginas que no se muestran deben ocultarse
+     * @return true si las paginas que no se muestran deben ocultarse, false en caso contrario
      */
     protected boolean hideOffscreenPages() {
         return true;
     }
 
     /**
-     * Indicates if the default animations of the view pager should be used.
-     *
-     * @return
+     * Indica si el desplazamiento entre paginas esta habilitado
+     * @return true si el desplazamiento entre paginas esta habilitado, false en caso contrario
      */
     protected boolean isPagingEnabled() {
         return false;
     }
 
     /**
-     * Called each {@link #transformPage(android.view.View, float)} before {{@link #onTransform(android.view.View, float)} is called.
-     *
-     * @param view
-     * @param position
+     * Metodo que se llama antes de {@link #transformPage(android.view.View, float)} para cada pagina y antes de que se aplique la transformacion.
+     * @param view Aplica la transformacion a esta vista
+     * @param position Posicion de la pagina en el ViewPager2
      */
     protected void onPreTransform(View view, float position) {
         final float width = view.getWidth();
@@ -85,10 +95,9 @@ public abstract class BaseTransformer implements ViewPager2.PageTransformer {
     }
 
     /**
-     * Called each {@link #transformPage(android.view.View, float)} call after {@link #onTransform(android.view.View, float)} is finished.
-     *
-     * @param view
-     * @param position
+     * Metodo que se llama despues de {@link #transformPage(android.view.View, float)} para cada pagina y despues de que se aplique la transformacion.
+     * @param view Aplica la transformacion a esta vista
+     * @param position Posicion de la pagina en el ViewPager2
      */
     protected void onPostTransform(View view, float position) {
     }

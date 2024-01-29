@@ -18,8 +18,20 @@ package com.example.tablayout_y_viewpager;
 
 import android.view.View;
 
+/**
+ * Clase que define una animacion de tipo acordeon para las transiciones entre paginas
+ * @author Toxic Bakery
+ * @version 2.0
+ * @see BaseTransformer
+ */
+
 public class AccordionTransformer extends BaseTransformer {
 
+    /**
+     * Metodo que define la animacion de transicion entre paginas
+     * @param view Vista a la que se aplica la transformacion
+     * @param position Posicion de la pagina en el ViewPager2
+     */
     @Override
     protected void onTransform(View view, float position) {
         view.setPivotX(position < 0 ? 0 : view.getWidth());
